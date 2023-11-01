@@ -17,14 +17,16 @@ wget https://raw.githubusercontent.com/docker/docker-install/master/rootless-ins
 chmod +x rootless-install.sh
 
 # Executa o script rootless-install.sh e captura o status de saída
-echo "Executando o script rootless-install.sh..."
+echo "Running rootless-install.sh..."
 ./rootless-install.sh
 
 # Verifica o status de saída do script rootless-install.sh
 if [ $? -ne 0 ]; then
-    # Em caso de erro, instala uidmap e tenta ativar o módulo ip_tables
+    # If return error, install uidmap and try activate ip_tables
     echo "Installing..."
-    SKIP_IPTABLES=1 ./rootless-install.sh
+	cat <<EOF | sudo sh -x
+	apt-get install -y uidmap
+	EOF
 
     if [ $? -ne 0 ]; then
         echo "Error: SKIP_IPTABLES=1 ./rootless-install.sh"

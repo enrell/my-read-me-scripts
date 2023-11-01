@@ -18,5 +18,8 @@ The purpose of this repository is to provide scripts that facilitate the install
 ## Usage
 
 To use the available scripts in this repository, you can download and execute them directly using `curl`. For example, to run the `ubuntu.sh` script in Ubuntu:
+````
+sudo apt-get update && sudo apt-get install curl git -y --only-upgrade
+````
 ```bash
 curl -o- https://raw.githubusercontent.com/enrell/my-read-me-scripts/main/ubuntu.sh | bash

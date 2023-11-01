@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Update source list
+sudo apt-get update
 sudo cp /etc/apt/sources.list /etc/apt/source.list.bak
 
 wget https://raw.githubusercontent.com/GLUA-UA/UbuntuMirrorsScript/master/glua_mirrors_ubuntu.sh

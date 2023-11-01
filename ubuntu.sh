@@ -9,6 +9,9 @@ sudo apt-get update
 
 # Install Docker and Docker Compose
 
+sudo systemctl disable --now docker.service docker.socket
+systemctl --user disable --now docker.service
+
 curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
 
@@ -33,6 +36,10 @@ if [ $? -ne 0 ]; then
         if [ $? -ne 0 ]; then
             echo "Error: Unable to activate ip_tables. Your environment may not support this operation."
             echo "Consider using SKIP_IPTABLES=1 ./rootless-install.sh"
+        else
+            # Tenta executar o rootless-install.sh novamente
+            echo "Trying to run rootless-install.sh again..."
+            ./rootless-install.sh
         fi
     else
         echo "Error: Failed to install uidmap. Check your network and try again."
